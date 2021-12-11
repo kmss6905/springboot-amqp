@@ -1,5 +1,6 @@
 package com.example.springbootamqp;
 
+import com.example.springbootamqp.runnner.RabbitAmqpTutorialFanoutRunner;
 import com.example.springbootamqp.runnner.RabbitAmqpTutorialsRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,17 +14,22 @@ public class SpringbootAmqpApplication {
     @Profile("usage_message")
     @Bean
     public CommandLineRunner usage() {
-
         return args -> {
             System.out.println("This app uses Spring Profiles to control its behavior.\n");
                     System.out.println("Sample usage: java -jar rabbit-tutorials.jar --spring.profiles.active=hello-world,sender");
         };
     }
 
-    @Profile("!usage_message")
+//    @Profile("!usage_message")
+//    @Bean
+//    public CommandLineRunner tutorial() {
+//        return new RabbitAmqpTutorialsRunner();
+//    }
+
+    @Profile("tut3")
     @Bean
-    public CommandLineRunner tutorial() {
-        return new RabbitAmqpTutorialsRunner();
+    public CommandLineRunner fanoutTutorial(){
+        return new RabbitAmqpTutorialFanoutRunner();
     }
 
     public static void main(String[] args) {

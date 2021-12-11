@@ -14,7 +14,6 @@ public class Tut1Sender {
     private Queue queue;
 
     public void send(){
-        System.out.println("Tut1Sender.send");
         String message = "Hello World!";
         this.template.convertAndSend(queue.getName(), message);
         System.out.println(" [x] Sent '" + message + "'");

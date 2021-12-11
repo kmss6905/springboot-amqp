@@ -1,12 +1,14 @@
 package com.example.springbootamqp.config;
 
-import com.example.springbootamqp.receiver.Tut1Receiver;
-import com.example.springbootamqp.sender.Tut1Sender;
+import com.example.springbootamqp.receiver.Tut2Receiver;
+import com.example.springbootamqp.sender.Tut2Sender;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-@Profile({"tut1", "hello-world"})
+@Profile({"tut2", "hello-world"})
+//@Configuration
 public class AMQPConfig {
 
     // 큐를 정의
@@ -15,17 +17,23 @@ public class AMQPConfig {
         return new Queue("hello");
     }
 
-    // 리시버 빈 등록
     @Profile("receiver")
-    @Bean
-    public Tut1Receiver receiver(){
-        return new Tut1Receiver();
-    }
+    private static class ReceiverConfig{
 
-    // 센터 빈 등록
-    @Profile("sender")
-    @Bean
-    public Tut1Sender sender(){
-        return new Tut1Sender();
+        @Bean
+        public Tut2Receiver receiver1(){
+            return new Tut2Receiver(1);
+        }
+
+//        @Bean
+//        public Tut2Receiver receiver2(){
+//            return new Tut2Receiver(2);
+//        }
+////        // 센터 빈 등록
+//        @Profile("sender")
+//        @Bean
+//        public Tut2Sender sender(){
+//            return new Tut2Sender();
+//        }
     }
 }
