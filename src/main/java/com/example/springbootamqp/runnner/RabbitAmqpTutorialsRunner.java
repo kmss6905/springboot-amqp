@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Profile;
 
 // 스프링부트가 시작할 때 실행하도록 함
+@Profile("!tut4")
 public class RabbitAmqpTutorialsRunner implements CommandLineRunner {
     @Value("${tutorial.client.duration}")
     private int duration;
@@ -18,8 +20,8 @@ public class RabbitAmqpTutorialsRunner implements CommandLineRunner {
 //    private Tut2Sender tut2Sender;
 
     // receiver
-    @Autowired
-    private Tut2Receiver receiver;
+//    @Autowired
+//    private Tut2Receiver receiver;
 
     @Autowired
     private ConfigurableApplicationContext ctx;

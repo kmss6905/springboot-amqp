@@ -1,7 +1,9 @@
 package com.example.springbootamqp;
 
-import com.example.springbootamqp.runnner.RabbitAmqpTutorialFanoutRunner;
-import com.example.springbootamqp.runnner.RabbitAmqpTutorialsRunner;
+import com.example.springbootamqp.receiver.Tut4Receiver;
+import com.example.springbootamqp.runnner.tut4.RabbitAmqpDirectRecvRunner;
+import com.example.springbootamqp.runnner.tut4.RabbitAmqpDirectSenderRunner;
+import com.example.springbootamqp.sender.Tut4Sender;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,16 +22,16 @@ public class SpringbootAmqpApplication {
         };
     }
 
-//    @Profile("!usage_message")
-//    @Bean
-//    public CommandLineRunner tutorial() {
-//        return new RabbitAmqpTutorialsRunner();
-//    }
-
-    @Profile("tut3")
+    @Profile("receiver")
     @Bean
-    public CommandLineRunner fanoutTutorial(){
-        return new RabbitAmqpTutorialFanoutRunner();
+    public CommandLineRunner directTutorialReceiver(){
+        return new RabbitAmqpDirectRecvRunner();
+    }
+
+    @Profile("sender")
+    @Bean
+    public CommandLineRunner directTutorialSender(){
+        return new RabbitAmqpDirectSenderRunner();
     }
 
     public static void main(String[] args) {
